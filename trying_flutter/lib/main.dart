@@ -102,6 +102,39 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            Card(
+              elevation: 5.0,
+              child: Container(
+                width: double.infinity,
+                color: Colors.blue,
+                padding: const EdgeInsets.all(8.0),
+                child: const Text(
+                  'Text 1',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              color: Colors.blue,
+              padding: const EdgeInsets.all(8.0),
+              child: const Card(
+                color: Colors.transparent,
+                // elevation: 5.0,
+                child: Text(
+                  'Text 2',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    // color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
