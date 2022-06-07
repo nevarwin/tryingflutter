@@ -122,16 +122,13 @@ class _MyHomePageState extends State<MyHomePage> {
               width: double.infinity,
               color: Colors.blue,
               padding: const EdgeInsets.all(8.0),
-              child: const Card(
-                color: Colors.transparent,
-                // elevation: 5.0,
-                child: Text(
-                  'Text 2',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    // color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+              margin: const EdgeInsets.all(4.0),
+              child: const Text(
+                'Text 2',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
