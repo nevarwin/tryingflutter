@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import './transaction.dart';
+import 'package:intl/intl.dart';
 
-import 'todo_class.dart';
+import './transaction.dart';
+import './todo_class.dart';
+import './sample_class.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,15 +18,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -71,16 +64,29 @@ class _MyHomePageState extends State<MyHomePage> {
       TodoClass(
         id: '1',
         title: 'title1',
-        description: 'description1',
+        description: 'description1 ',
         date: DateTime.now(),
         color: Colors.teal,
       ),
       TodoClass(
         id: '2',
         title: 'title2',
-        description: 'description2',
+        description: 'description2 ',
         date: DateTime.now(),
         color: Colors.orangeAccent,
+      ),
+    ];
+
+    final List<SampleClass> samples = [
+      SampleClass(
+        title: 'First Title',
+        subtitle: 'Nice Description',
+        date: DateTime.now(),
+        color: Colors.deepOrange,
+      ),
+      SampleClass(
+        title: 'Second Title',
+        subtitle: 'Great Description',
       ),
     ];
 
@@ -100,6 +106,23 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             Column(
+                children: samples.map(
+              (smp) {
+                return Card(
+                  child: Row(
+                    children: [
+                      CircleAvatar(backgroundColor: smp.color),
+                      Text(smp.title),
+                      Text(smp.subtitle),
+                      Text(
+                        DateFormat('MMMM dd').format(smp.date),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ).toList()),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: todo.map((todo) {
                 return ListTile(
@@ -113,7 +136,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   subtitle: Text(
-                    todo.description,
+                    todo.description +
+                        DateFormat.yMEd().format(
+                          DateTime.now(),
+                        ),
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 16,
@@ -163,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                           Text(
-                            '${tx.date}',
+                            DateFormat('MMMM dd').format(tx.date),
                             style: const TextStyle(
                               fontSize: 14,
                               color: Colors.grey,
