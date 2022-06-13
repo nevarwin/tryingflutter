@@ -43,6 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final List<Transaction> transaction = [
@@ -87,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
       SampleClass(
         title: 'Second Title',
         subtitle: 'Great Description',
+        date: DateTime.now(),
       ),
     ];
 
@@ -95,114 +99,150 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Column(
-                children: samples.map(
-              (smp) {
-                return Card(
-                  child: Row(
-                    children: [
-                      CircleAvatar(backgroundColor: smp.color),
-                      Text(smp.title),
-                      Text(smp.subtitle),
-                      Text(
-                        DateFormat('MMMM dd').format(smp.date),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ).toList()),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: todo.map((todo) {
-                return ListTile(
-                  tileColor: Colors.white70,
-                  style: ListTileStyle.list,
-                  title: Text(
-                    todo.title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'You have pushed the button this many times:',
+              ),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+              Column(
+                  children: samples.map(
+                (smp) {
+                  return Card(
+                    child: Row(
+                      children: [
+                        CircleAvatar(backgroundColor: smp.color),
+                        Text(smp.title),
+                        Text(smp.subtitle),
+                        Text(
+                          DateFormat('MMMM dd').format(smp.date),
+                        ),
+                      ],
                     ),
-                  ),
-                  subtitle: Text(
-                    todo.description +
-                        DateFormat.yMEd().format(
-                          DateTime.now(),
-                        ),
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundColor: todo.color,
-                  ),
-                );
-              }).toList(),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: transaction.map((tx) {
-                return Card(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.purple,
-                            width: 2,
-                          ),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 15,
-                          vertical: 10,
-                        ),
-                        child: Text(
-                          '\$${tx.amount}',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
+                  );
+                },
+              ).toList()),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: todo.map((todo) {
+                  return ListTile(
+                    tileColor: Colors.white70,
+                    style: ListTileStyle.list,
+                    title: Text(
+                      todo.title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
                       ),
-                      const SizedBox(width: 8.0),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tx.title,
+                    ),
+                    subtitle: Text(
+                      todo.description +
+                          DateFormat.yMEd().format(
+                            DateTime.now(),
+                          ),
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
+                    ),
+                    leading: CircleAvatar(
+                      backgroundColor: todo.color,
+                    ),
+                  );
+                }).toList(),
+              ),
+              Card(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TextField(
+                      controller: titleController,
+                      decoration: const InputDecoration(
+                        labelText: 'Title',
+                      ),
+                      keyboardType: TextInputType.text,
+                    ),
+                    TextField(
+                      controller: amountController,
+                      decoration: const InputDecoration(
+                        labelText: 'Amount',
+                      ),
+                      keyboardType: TextInputType.number,
+                    ),
+                    FlatButton(
+                      onPressed: () {
+                        Transaction(
+                          id: DateTime.now().toString(),
+                          title: titleController.text,
+                          amount: double.parse(amountController.text),
+                          date: DateTime.now(),
+                        );
+                      },
+                      color: Colors.purple,
+                      textColor: Colors.white,
+                      child: const Text('Add Transaction'),
+                    ),
+                  ],
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: transaction.map((tx) {
+                  return Card(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.purple,
+                              width: 2,
+                            ),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 15,
+                            vertical: 10,
+                          ),
+                          child: Text(
+                            '\$${tx.amount}',
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontSize: 20,
                             ),
                           ),
-                          Text(
-                            DateFormat('MMMM dd').format(tx.date),
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
+                        ),
+                        const SizedBox(width: 8.0),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              tx.title,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
                             ),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                );
-              }).toList(),
-            )
-          ],
+                            Text(
+                              DateFormat('MMMM dd').format(tx.date),
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                }).toList(),
+              )
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

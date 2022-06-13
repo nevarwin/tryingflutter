@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+DateTime todaysDate = DateTime.now();
+
 class SampleClass {
   final String title;
   final String subtitle;
@@ -10,7 +12,7 @@ class SampleClass {
   SampleClass({
     required this.title,
     required this.subtitle,
-    this.date = DateTime.now(),
+    required this.date,
     this.color = Colors.deepPurpleAccent,
   });
 }
