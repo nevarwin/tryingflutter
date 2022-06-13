@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import './transaction.dart';
-import './todo_class.dart';
-import './sample_class.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -35,65 +31,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final List<Transaction> transaction = [
-      Transaction(
-        id: 't1',
-        title: 'Title1',
-        amount: 12.99,
-        date: DateTime.now(),
-      ),
-      Transaction(
-        id: 't2',
-        title: 'Title2',
-        amount: 11.39,
-        date: DateTime.now(),
-      )
-    ];
-
-    final List<TodoClass> todo = [
-      TodoClass(
-        id: '1',
-        title: 'title1',
-        description: 'description1 ',
-        date: DateTime.now(),
-        color: Colors.teal,
-      ),
-      TodoClass(
-        id: '2',
-        title: 'title2',
-        description: 'description2 ',
-        date: DateTime.now(),
-        color: Colors.orangeAccent,
-      ),
-    ];
-
-    final List<SampleClass> samples = [
-      SampleClass(
-        title: 'First Title',
-        subtitle: 'Nice Description',
-        date: DateTime.now(),
-        color: Colors.deepOrange,
-      ),
-      SampleClass(
-        title: 'Second Title',
-        subtitle: 'Great Description',
-        date: DateTime.now(),
-      ),
-    ];
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -103,59 +45,6 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headline4,
-              ),
-              Column(
-                  children: samples.map(
-                (smp) {
-                  return Card(
-                    child: Row(
-                      children: [
-                        CircleAvatar(backgroundColor: smp.color),
-                        Text(smp.title),
-                        Text(smp.subtitle),
-                        Text(
-                          DateFormat('MMMM dd').format(smp.date),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ).toList()),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: todo.map((todo) {
-                  return ListTile(
-                    tileColor: Colors.white70,
-                    style: ListTileStyle.list,
-                    title: Text(
-                      todo.title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                    subtitle: Text(
-                      todo.description +
-                          DateFormat.yMEd().format(
-                            DateTime.now(),
-                          ),
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                      ),
-                    ),
-                    leading: CircleAvatar(
-                      backgroundColor: todo.color,
-                    ),
-                  );
-                }).toList(),
-              ),
               Card(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -245,11 +134,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
