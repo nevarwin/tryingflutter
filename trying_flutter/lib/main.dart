@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:trying_flutter/home.dart';
 
 import './widgets/user_transaction.dart';
+import './home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,28 +26,19 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
-
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: UserTransaction(),
-        ),
-      ),
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (ctx) => const HomePage(),
+      },
     );
   }
 }
