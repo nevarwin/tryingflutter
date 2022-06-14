@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trying_flutter/widgets/todo%20practice%20code/new_todo.dart';
 
 import './todo_list.dart';
 import '../../models/todo_class.dart';
@@ -25,8 +26,13 @@ class TodoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TodoList(
-      todo: todo,
+    return Column(
+      children: [
+        const NewTodo(),
+        TodoList(
+          todo: todo,
+        ),
+      ],
     );
   }
 }

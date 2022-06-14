@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../models/sample_class.dart';
+import 'package:trying_flutter/widgets/sample%20practice%20code/sample_list.dart';
+import '../../models/sample_class.dart';
 
 class SampleWidget extends StatelessWidget {
   SampleWidget({Key? key}) : super(key: key);
@@ -22,22 +23,11 @@ class SampleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: samples.map(
-        (smp) {
-          return Card(
-            child: Row(
-              children: [
-                CircleAvatar(backgroundColor: smp.color),
-                Text(smp.title),
-                Text(smp.subtitle),
-                Text(
-                  DateFormat('MMMM dd').format(smp.date),
-                ),
-              ],
-            ),
-          );
-        },
-      ).toList(),
+      children: [
+        SampleList(
+          samples: samples,
+        ),
+      ],
     );
   }
 }
