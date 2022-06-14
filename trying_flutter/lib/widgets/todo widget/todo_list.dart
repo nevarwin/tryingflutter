@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../models/todo_class.dart';
 
-class TodoWidget extends StatelessWidget {
-  TodoWidget({Key? key}) : super(key: key);
+import '../../models/todo_class.dart';
 
-  final List<TodoClass> todo = [
-    TodoClass(
-      id: '1',
-      title: 'title1',
-      description: 'description1 ',
-      date: DateTime.now(),
-      color: Colors.teal,
-    ),
-    TodoClass(
-      id: '2',
-      title: 'title2',
-      description: 'description2 ',
-      date: DateTime.now(),
-      color: Colors.orangeAccent,
-    ),
-  ];
+class TodoList extends StatelessWidget {
+  const TodoList({
+    Key? key,
+    required this.todo,
+  }) : super(key: key);
+  final List<TodoClass> todo;
 
   @override
   Widget build(BuildContext context) {
