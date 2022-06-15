@@ -29,6 +29,7 @@ class TodoWidget extends StatelessWidget {
     return Column(
       children: [
         const NewTodo(),
+        const SizedBox(height: 10),
         TodoList(
           todo: todo,
         ),

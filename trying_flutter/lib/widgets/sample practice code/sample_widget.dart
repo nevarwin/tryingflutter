@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:trying_flutter/widgets/sample%20practice%20code/new_samples.dart';
 import 'package:trying_flutter/widgets/sample%20practice%20code/sample_list.dart';
 import '../../models/sample_class.dart';
 
@@ -24,6 +25,8 @@ class SampleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        NewSamples(),
+        const SizedBox(height: 10),
         SampleList(
           samples: samples,
         ),

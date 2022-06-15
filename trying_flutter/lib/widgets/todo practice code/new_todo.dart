@@ -10,6 +10,7 @@ class NewTodo extends StatelessWidget {
 
     return Card(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           TextField(
             decoration: InputDecoration(labelText: 'Title'),
@@ -17,15 +18,17 @@ class NewTodo extends StatelessWidget {
             controller: titleController,
           ),
           TextField(
-            decoration: InputDecoration(labelText: 'Title'),
+            decoration: InputDecoration(labelText: 'Subtitle'),
             keyboardType: TextInputType.text,
             controller: descController,
           ),
           RaisedButton(
+            child: Text('Submit'),
             onPressed: () {
               print(descController);
             },
             color: Colors.greenAccent,
+            textColor: Colors.black,
           )
         ],
       ),

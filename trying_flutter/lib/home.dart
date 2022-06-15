@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './screens/todo_screen.dart';
-import './screens/sample_screen.dart';
+import './widgets/sample practice code/sample_widget.dart';
+import './widgets/todo practice code/todo_widget.dart';
 import './widgets/user_transaction.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,11 +17,11 @@ class _HomePageState extends State<HomePage> {
   Widget buildPages() {
     switch (index) {
       case 0:
-        return const SampleScreen();
+        return SingleChildScrollView(child: SampleWidget());
       case 1:
-        return const TodoScreen();
+        return SingleChildScrollView(child: TodoWidget());
       case 2:
-        return UserTransaction();
+        return SingleChildScrollView(child: UserTransaction());
       default:
         return Container(
           color: Colors.black54,
@@ -39,15 +39,15 @@ class _HomePageState extends State<HomePage> {
       currentIndex: index,
       items: const [
         BottomNavigationBarItem(
-          label: 'Todo',
+          label: 'Sample Practice Code',
           icon: Icon(Icons.today),
         ),
         BottomNavigationBarItem(
-          label: 'Doing',
+          label: 'Todo Practice Code',
           icon: Icon(Icons.calendar_today),
         ),
         BottomNavigationBarItem(
-          label: 'Done',
+          label: 'Transaction Code',
           icon: Icon(Icons.check),
         ),
       ],
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('try'),
+        title: const Text('Trial and Error Code'),
       ),
       body: buildPages(),
       bottomNavigationBar: buildBottomNavigationBar(),

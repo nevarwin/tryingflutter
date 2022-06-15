@@ -10,6 +10,7 @@ class NewSamples extends StatelessWidget {
 
     return Card(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           TextField(
             decoration: InputDecoration(labelText: 'Title'),
@@ -22,8 +23,10 @@ class NewSamples extends StatelessWidget {
             keyboardType: TextInputType.text,
           ),
           RaisedButton(
+            child: Text('Submit'),
             onPressed: () {},
             color: Colors.blue[400],
+            textColor: Colors.black,
           ),
         ],
       ),
