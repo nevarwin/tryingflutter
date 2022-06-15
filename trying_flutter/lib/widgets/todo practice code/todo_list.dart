@@ -26,10 +26,7 @@ class TodoList extends StatelessWidget {
             ),
           ),
           subtitle: Text(
-            todo.description +
-                DateFormat.yMEd().format(
-                  DateTime.now(),
-                ),
+            todo.description + DateFormat.yMEd().format(DateTime.now()),
             style: const TextStyle(
               color: Colors.grey,
               fontSize: 16,

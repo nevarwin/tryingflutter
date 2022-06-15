@@ -4,9 +4,14 @@ import 'package:trying_flutter/widgets/sample%20practice%20code/new_samples.dart
 import 'package:trying_flutter/widgets/sample%20practice%20code/sample_list.dart';
 import '../../models/sample_class.dart';
 
-class SampleWidget extends StatelessWidget {
+class SampleWidget extends StatefulWidget {
   SampleWidget({Key? key}) : super(key: key);
 
+  @override
+  State<SampleWidget> createState() => _SampleWidgetState();
+}
+
+class _SampleWidgetState extends State<SampleWidget> {
   final List<SampleClass> samples = [
     SampleClass(
       title: 'First Title',
@@ -21,11 +26,27 @@ class SampleWidget extends StatelessWidget {
     ),
   ];
 
+  void _addSamples(
+    String title,
+    String subtitle,
+    DateTime date,
+  ) {
+    final smpls = SampleClass(
+      title: title,
+      subtitle: subtitle,
+      date: date,
+    );
+
+    setState(() {
+      samples.add(smpls);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        NewSamples(),
+        NewSamples(sampleFunc: _addSamples),
         const SizedBox(height: 10),
         SampleList(
           samples: samples,
