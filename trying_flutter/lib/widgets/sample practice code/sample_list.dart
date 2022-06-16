@@ -13,23 +13,24 @@ class SampleList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: samples.map(
-        (smp) {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: samples.length,
+        itemBuilder: (context, index) {
           return Card(
             child: Row(
               children: [
-                CircleAvatar(backgroundColor: smp.color),
-                Text(smp.title),
-                Text(smp.subtitle),
+                CircleAvatar(backgroundColor: samples[index].color),
+                Text(samples[index].title),
+                Text(samples[index].subtitle),
                 Text(
-                  DateFormat('MMMM dd').format(smp.date),
+                  DateFormat('MMMM dd').format(samples[index].date),
                 ),
               ],
             ),
           );
         },
-      ).toList(),
+      ),
     );
   }
 }

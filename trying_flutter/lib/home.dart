@@ -17,11 +17,11 @@ class _HomePageState extends State<HomePage> {
   Widget buildPages() {
     switch (index) {
       case 0:
-        return SingleChildScrollView(child: SampleWidget());
+        return SampleWidget();
       case 1:
-        return SingleChildScrollView(child: TodoWidget());
+        return TodoWidget();
       case 2:
-        return SingleChildScrollView(child: UserTransaction());
+        return UserTransaction();
       default:
         return Container(
           color: Colors.black54,

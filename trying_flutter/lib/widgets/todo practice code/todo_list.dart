@@ -12,31 +12,34 @@ class TodoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: todo.map((todo) {
-        return ListTile(
-          tileColor: Colors.white70,
-          style: ListTileStyle.list,
-          title: Text(
-            todo.title,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+    return Expanded(
+      child: ListView.builder(
+        itemCount: todo.length,
+        itemBuilder: ((context, index) {
+          return ListTile(
+            tileColor: Colors.white70,
+            style: ListTileStyle.list,
+            title: Text(
+              todo[index].title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
             ),
-          ),
-          subtitle: Text(
-            todo.description + DateFormat.yMEd().format(DateTime.now()),
-            style: const TextStyle(
-              color: Colors.grey,
-              fontSize: 16,
+            subtitle: Text(
+              todo[index].description +
+                  DateFormat.yMEd().format(DateTime.now()),
+              style: const TextStyle(
+                color: Colors.grey,
+                fontSize: 16,
+              ),
             ),
-          ),
-          leading: CircleAvatar(
-            backgroundColor: todo.color,
-          ),
-        );
-      }).toList(),
+            leading: CircleAvatar(
+              backgroundColor: todo[index].color,
+            ),
+          );
+        }),
+      ),
     );
   }
 }
