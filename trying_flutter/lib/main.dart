@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trying_flutter/home.dart';
 
-import './widgets/user_transaction.dart';
 import './home.dart';
 
 void main() {
