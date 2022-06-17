@@ -48,25 +48,15 @@ class _TodoWidgetState extends State<TodoWidget> {
     });
   }
 
-  void _changeColor(Color color) {
-    Color pickerColor;
-    setState(() => pickerColor = color);
-  }
-
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          NewTodo(
-            todoFunc: _addTodo,
-          ),
-          const SizedBox(height: 10),
-          TodoList(
-            todo: todo,
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        const SizedBox(height: 10),
+        TodoList(
+          todo: todo,
+        ),
+      ],
     );
   }
 }

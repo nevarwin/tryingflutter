@@ -12,6 +12,6 @@ class TodoClass {
     required this.title,
     required this.description,
     required this.date,
-    required this.color,
+    this.color = Colors.blue,
   });
 }

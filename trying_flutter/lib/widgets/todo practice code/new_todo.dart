@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:intl/intl.dart';
 
-class NewTodo extends StatelessWidget {
+class NewTodo extends StatefulWidget {
   const NewTodo({
     Key? key,
     required this.todoFunc,
@@ -11,13 +11,43 @@ class NewTodo extends StatelessWidget {
   final Function todoFunc;
 
   @override
+  State<NewTodo> createState() => _NewTodoState();
+}
+
+class _NewTodoState extends State<NewTodo> {
+  final titleController = TextEditingController();
+  final descController = TextEditingController();
+  final dateController = TextEditingController();
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    descController.dispose();
+    dateController.dispose();
+    super.dispose();
+  }
+
+  void _submit() {
+    final tCrtl = titleController.text;
+    final dCrtl = descController.text;
+    final dateCtrl = DateTime.parse(dateController.text);
+
+    if (tCrtl.isEmpty && dCrtl.isEmpty && dateCtrl == null) {
+      return;
+    }
+
+    widget.todoFunc(
+      tCrtl,
+      dCrtl,
+      dateCtrl,
+      Colors.blue,
+    );
+
+    Navigator.of(context).pop();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final titleController = TextEditingController();
-    final descController = TextEditingController();
-    final dateController = TextEditingController();
-
-    Color? pickedColor;
-
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -26,16 +56,19 @@ class NewTodo extends StatelessWidget {
             decoration: InputDecoration(labelText: 'Title'),
             keyboardType: TextInputType.text,
             controller: titleController,
+            onSubmitted: (_) => _submit(),
           ),
           TextField(
             decoration: InputDecoration(labelText: 'Subtitle'),
             keyboardType: TextInputType.text,
             controller: descController,
+            onSubmitted: (_) => _submit(),
           ),
           TextField(
+            onSubmitted: (_) => _submit(),
             readOnly: true,
             controller: dateController,
-            decoration: InputDecoration(labelText: 'Date'),
+            decoration: InputDecoration(hintText: 'Date'),
             onTap: () async {
               var date = await showDatePicker(
                 context: context,
@@ -46,23 +79,10 @@ class NewTodo extends StatelessWidget {
               dateController.text = date.toString().substring(0, 10);
             },
           ),
-          BlockPicker(
-            pickerColor: Colors.blue,
-            onColorChanged: (color) {
-              pickedColor = color;
-            },
-          ),
           RaisedButton(
             child: Text('Submit'),
-            onPressed: () {
-              todoFunc(
-                titleController.text,
-                descController.text,
-                DateTime.parse(dateController.text),
-                pickedColor,
-              );
-            },
-            color: Colors.greenAccent,
+            onPressed: () => _submit(),
+            color: Colors.lightGreen,
             textColor: Colors.black,
           )
         ],

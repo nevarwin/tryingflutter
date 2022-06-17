@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 import './widgets/sample practice code/sample_widget.dart';
 import './widgets/todo practice code/todo_widget.dart';
-import './widgets/user_transaction.dart';
+
+import './screens/transaction_screen.dart';
+import './screens/todo_screen.dart';
+import './screens/sample_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,11 +20,11 @@ class _HomePageState extends State<HomePage> {
   Widget buildPages() {
     switch (index) {
       case 0:
-        return SampleWidget();
+        return SampleScreen();
       case 1:
-        return TodoWidget();
+        return TodoScreen();
       case 2:
-        return UserTransaction();
+        return TransactionScreen();
       default:
         return Container(
           color: Colors.black54,
