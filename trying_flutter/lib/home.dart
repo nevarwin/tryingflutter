@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import './widgets/sample practice code/sample_widget.dart';
-import './widgets/todo practice code/todo_widget.dart';
-
 import './screens/transaction_screen.dart';
 import './screens/todo_screen.dart';
 import './screens/sample_screen.dart';
