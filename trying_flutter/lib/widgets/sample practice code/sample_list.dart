@@ -13,24 +13,48 @@ class SampleList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: samples.length,
-        itemBuilder: (context, index) {
-          return Card(
-            child: Row(
+    return Container(
+      child: samples.isEmpty
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircleAvatar(backgroundColor: samples[index].color),
-                Text(samples[index].title),
-                Text(samples[index].subtitle),
-                Text(
-                  DateFormat('MMMM dd').format(samples[index].date),
+                Container(
+                  height: 300,
+                  child: Image.asset(
+                    'assets/images/waiting.png',
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                const SizedBox(height: 10.0),
+                const Text(
+                  'Nothing',
+                  style: TextStyle(
+                    fontFamily: 'OpenSans',
+                    color: Colors.grey,
+                  ),
                 ),
               ],
+            )
+          : Expanded(
+              child: ListView.builder(
+                itemCount: samples.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    child: Row(
+                      children: [
+                        CircleAvatar(backgroundColor: samples[index].color),
+                        Text(samples[index].title),
+                        Text(samples[index].subtitle),
+                        Text(
+                          DateFormat('MMMM dd').format(samples[index].date),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
-          );
-        },
-      ),
     );
   }
 }

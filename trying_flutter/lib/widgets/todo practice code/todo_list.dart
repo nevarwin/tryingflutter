@@ -12,52 +12,76 @@ class TodoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: todo.length,
-        itemBuilder: ((context, index) {
-          return Card(
-            child: ListTile(
-              tileColor: Colors.white70,
-              style: ListTileStyle.list,
-              title: Text(
-                todo[index].title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+    return Container(
+      child: todo.isEmpty
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 300,
+                  child: Image.asset(
+                    'assets/images/waiting.png',
+                    fit: BoxFit.contain,
+                  ),
                 ),
-              ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 3.0,
-                    ),
-                    child: Text(
-                      todo[index].description,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
+                const SizedBox(height: 10.0),
+                const Text(
+                  'Nothing',
+                  style: TextStyle(
+                    fontFamily: 'OpenSans',
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
+            )
+          : Expanded(
+              child: ListView.builder(
+                itemCount: todo.length,
+                itemBuilder: ((context, index) {
+                  return Card(
+                    child: ListTile(
+                      tileColor: Colors.white70,
+                      style: ListTileStyle.list,
+                      title: Text(
+                        todo[index].title,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 3.0,
+                            ),
+                            child: Text(
+                              todo[index].description,
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            DateFormat.yMEd().format(DateTime.now()),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14,
+                            ),
+                          )
+                        ],
+                      ),
+                      leading: CircleAvatar(
+                        backgroundColor: todo[index].color,
                       ),
                     ),
-                  ),
-                  Text(
-                    DateFormat.yMEd().format(DateTime.now()),
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14,
-                    ),
-                  )
-                ],
-              ),
-              leading: CircleAvatar(
-                backgroundColor: todo[index].color,
+                  );
+                }),
               ),
             ),
-          );
-        }),
-      ),
     );
   }
 }
