@@ -16,26 +16,44 @@ class TodoList extends StatelessWidget {
       child: ListView.builder(
         itemCount: todo.length,
         itemBuilder: ((context, index) {
-          return ListTile(
-            tileColor: Colors.white70,
-            style: ListTileStyle.list,
-            title: Text(
-              todo[index].title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
+          return Card(
+            child: ListTile(
+              tileColor: Colors.white70,
+              style: ListTileStyle.list,
+              title: Text(
+                todo[index].title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
               ),
-            ),
-            subtitle: Text(
-              todo[index].description +
-                  DateFormat.yMEd().format(DateTime.now()),
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 16,
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 3.0,
+                    ),
+                    child: Text(
+                      todo[index].description,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    DateFormat.yMEd().format(DateTime.now()),
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14,
+                    ),
+                  )
+                ],
               ),
-            ),
-            leading: CircleAvatar(
-              backgroundColor: todo[index].color,
+              leading: CircleAvatar(
+                backgroundColor: todo[index].color,
+              ),
             ),
           );
         }),
