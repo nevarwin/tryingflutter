@@ -26,12 +26,9 @@ class TodoList extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10.0),
-                const Text(
+                Text(
                   'Nothing',
-                  style: TextStyle(
-                    fontFamily: 'OpenSans',
-                    color: Colors.grey,
-                  ),
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],
             )
@@ -45,10 +42,7 @@ class TodoList extends StatelessWidget {
                       style: ListTileStyle.list,
                       title: Text(
                         todo[index].title,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

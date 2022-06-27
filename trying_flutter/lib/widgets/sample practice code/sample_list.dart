@@ -27,12 +27,9 @@ class SampleList extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10.0),
-                const Text(
+                Text(
                   'Nothing',
-                  style: TextStyle(
-                    fontFamily: 'OpenSans',
-                    color: Colors.grey,
-                  ),
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],
             )
@@ -44,7 +41,10 @@ class SampleList extends StatelessWidget {
                     child: Row(
                       children: [
                         CircleAvatar(backgroundColor: samples[index].color),
-                        Text(samples[index].title),
+                        Text(
+                          samples[index].title,
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
                         Text(samples[index].subtitle),
                         Text(
                           DateFormat('MMMM dd').format(samples[index].date),
