@@ -32,10 +32,10 @@ class _NewTodoState extends State<NewTodo> {
   void _submit() {
     final tCrtl = titleController.text;
     final dCrtl = descController.text;
-    final nCtrl = int.parse(numController.text);
+    final nCtrl = double.parse(numController.text);
     final dateCtrl = DateTime.parse(dateController.text);
 
-    if (tCrtl.isEmpty && dCrtl.isEmpty && nCtrl.isNaN && dateCtrl == null) {
+    if (tCrtl.isEmpty && dCrtl.isEmpty && nCtrl == 0) {
       return;
     }
 
@@ -64,21 +64,21 @@ class _NewTodoState extends State<NewTodo> {
           ),
           TextField(
             decoration: InputDecoration(labelText: 'Description'),
-            keyboardType: TextInputType.number,
-            controller: numController,
-            onSubmitted: (_) => _submit(),
-          ),
-          TextField(
-            decoration: InputDecoration(labelText: 'Number'),
             keyboardType: TextInputType.text,
             controller: descController,
             onSubmitted: (_) => _submit(),
           ),
           TextField(
+            decoration: InputDecoration(labelText: 'Number'),
+            keyboardType: TextInputType.number,
+            controller: numController,
             onSubmitted: (_) => _submit(),
+          ),
+          TextField(
             readOnly: true,
             controller: dateController,
             decoration: InputDecoration(hintText: 'Date'),
+            onSubmitted: (_) => _submit(),
             onTap: () async {
               var date = await showDatePicker(
                 context: context,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trying_flutter/widgets/todo%20practice%20code/todo_chart.dart';
 
 import '../models/todo_class.dart';
 import '../widgets/todo practice code/new_todo.dart';
@@ -12,30 +13,42 @@ class TodoScreen extends StatefulWidget {
 }
 
 class _TodoScreenState extends State<TodoScreen> {
-  final List<TodoClass> todo = [
-    TodoClass(
-      id: '1',
-      title: 'title1',
-      description: 'description1 ',
-      number: 1,
-      date: DateTime.now(),
-      color: Colors.teal,
-    ),
-    TodoClass(
-      id: '2',
-      title: 'title2',
-      description: 'description2 ',
-      number: 1,
-      date: DateTime.now(),
-      color: Colors.orangeAccent,
-    ),
+  final List<TodoClass> _todo = [
+    // TodoClass(
+    //   id: '1',
+    //   title: 'title1',
+    //   description: 'description1 ',
+    //   number: 1,
+    //   date: DateTime.now(),
+    //   color: Colors.teal,
+    // ),
+    // TodoClass(
+    //   id: '2',
+    //   title: 'title2',
+    //   description: 'description2 ',
+    //   number: 1,
+    //   date: DateTime.now(),
+    //   color: Colors.orangeAccent,
+    // ),
   ];
+
+  List<TodoClass> get _recentTodo {
+    return _todo.where((element) {
+      return element.date.isAfter(
+        DateTime.now().subtract(
+          const Duration(
+            days: 7,
+          ),
+        ),
+      );
+    }).toList();
+  }
 
   void _addTodo(
     String title,
     String description,
+    double number,
     DateTime date,
-    int number,
     Color color,
   ) {
     final td = TodoClass(
@@ -48,7 +61,7 @@ class _TodoScreenState extends State<TodoScreen> {
     );
 
     setState(() {
-      todo.add(td);
+      _todo.add(td);
     });
   }
 
@@ -68,10 +81,8 @@ class _TodoScreenState extends State<TodoScreen> {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 10),
-          TodoList(
-            todo: todo,
-          ),
+          TodoChart(recentTodo: _recentTodo),
+          TodoList(todo: _todo),
         ],
       ),
       floatingActionButton: FloatingActionButton(

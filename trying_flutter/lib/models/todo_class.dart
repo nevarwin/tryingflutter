@@ -4,7 +4,7 @@ class TodoClass {
   final String id;
   final String title;
   final String description;
-  final int number;
+  final double number;
   final DateTime date;
   final Color color;
 

@@ -62,9 +62,7 @@ class _SampleScreenState extends State<SampleScreen> {
     return Scaffold(
       body: Column(
         children: [
-          SampleList(
-            samples: samples,
-          ),
+          SampleList(samples: samples),
         ],
       ),
       floatingActionButton: FloatingActionButton(

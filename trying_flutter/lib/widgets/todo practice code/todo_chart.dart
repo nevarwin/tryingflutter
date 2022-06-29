@@ -39,7 +39,7 @@ class TodoChart extends StatelessWidget {
       margin: EdgeInsets.all(6),
       child: Row(
         children: groupedTodoValues.map((data) {
-          return Text('${data['day']}');
+          return Text('Hello');
         }).toList(),
       ),
     );
