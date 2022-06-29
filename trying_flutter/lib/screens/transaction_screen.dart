@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/new_transaction.dart';
 import '../widgets/transactions_list.dart';
+import '../widgets/chart.dart';
 import '../models/transaction.dart';
 
 class TransactionScreen extends StatefulWidget {
@@ -12,7 +13,7 @@ class TransactionScreen extends StatefulWidget {
 }
 
 class _TransactionScreenState extends State<TransactionScreen> {
-  final List<Transaction> transaction = [
+  final List<Transaction> _userTransactions = [
     // Transaction(
     //   id: 't1',
     //   title: 'Title1',
@@ -39,8 +40,20 @@ class _TransactionScreenState extends State<TransactionScreen> {
     );
 
     setState(() {
-      transaction.add(newtx);
+      _userTransactions.add(newtx);
     });
+  }
+
+  List<Transaction> get _recentTransaction {
+    return _userTransactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          const Duration(
+            days: 7,
+          ),
+        ),
+      );
+    }).toList();
   }
 
   void _showModal(BuildContext context) {
@@ -63,7 +76,8 @@ class _TransactionScreenState extends State<TransactionScreen> {
     return Scaffold(
       body: Column(
         children: [
-          TransactionsList(transaction: transaction),
+          Chart(recentTransaction: _recentTransaction),
+          TransactionsList(transaction: _userTransactions),
         ],
       ),
       floatingActionButton: FloatingActionButton(
