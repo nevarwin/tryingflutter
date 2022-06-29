@@ -17,6 +17,7 @@ class _TodoScreenState extends State<TodoScreen> {
       id: '1',
       title: 'title1',
       description: 'description1 ',
+      number: 1,
       date: DateTime.now(),
       color: Colors.teal,
     ),
@@ -24,6 +25,7 @@ class _TodoScreenState extends State<TodoScreen> {
       id: '2',
       title: 'title2',
       description: 'description2 ',
+      number: 1,
       date: DateTime.now(),
       color: Colors.orangeAccent,
     ),
@@ -33,12 +35,14 @@ class _TodoScreenState extends State<TodoScreen> {
     String title,
     String description,
     DateTime date,
+    int number,
     Color color,
   ) {
     final td = TodoClass(
       id: DateTime.now().toString(),
       title: title,
       description: description,
+      number: number,
       date: date,
       color: color,
     );

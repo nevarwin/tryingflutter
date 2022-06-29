@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:trying_flutter/widgets/chart_bar.dart';
 import '../models/transaction.dart';
 
 class Chart extends StatelessWidget {
@@ -35,7 +36,14 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Text('ChartBar'),
+      elevation: 6,
+      margin: const EdgeInsets.all(20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: groupedTransactionValues.map((data) {
+          return ChartBar();
+        }).toList(),
+      ),
     );
   }
 }

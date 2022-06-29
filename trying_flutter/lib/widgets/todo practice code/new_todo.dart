@@ -17,12 +17,14 @@ class NewTodo extends StatefulWidget {
 class _NewTodoState extends State<NewTodo> {
   final titleController = TextEditingController();
   final descController = TextEditingController();
+  final numController = TextEditingController();
   final dateController = TextEditingController();
 
   @override
   void dispose() {
     titleController.dispose();
     descController.dispose();
+    numController.dispose();
     dateController.dispose();
     super.dispose();
   }
@@ -30,15 +32,17 @@ class _NewTodoState extends State<NewTodo> {
   void _submit() {
     final tCrtl = titleController.text;
     final dCrtl = descController.text;
+    final nCtrl = int.parse(numController.text);
     final dateCtrl = DateTime.parse(dateController.text);
 
-    if (tCrtl.isEmpty && dCrtl.isEmpty && dateCtrl == null) {
+    if (tCrtl.isEmpty && dCrtl.isEmpty && nCtrl.isNaN && dateCtrl == null) {
       return;
     }
 
     widget.todoFunc(
       tCrtl,
       dCrtl,
+      nCtrl,
       dateCtrl,
       Colors.blue,
     );
@@ -59,7 +63,13 @@ class _NewTodoState extends State<NewTodo> {
             onSubmitted: (_) => _submit(),
           ),
           TextField(
-            decoration: InputDecoration(labelText: 'Subtitle'),
+            decoration: InputDecoration(labelText: 'Description'),
+            keyboardType: TextInputType.number,
+            controller: numController,
+            onSubmitted: (_) => _submit(),
+          ),
+          TextField(
+            decoration: InputDecoration(labelText: 'Number'),
             keyboardType: TextInputType.text,
             controller: descController,
             onSubmitted: (_) => _submit(),
