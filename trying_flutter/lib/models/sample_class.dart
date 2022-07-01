@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 class SampleClass {
   final String title;
-  final String subtitle;
+  final double unitPrice;
+  final double newPrice;
   final DateTime date;
   final Color color;
 
   SampleClass({
     required this.title,
-    required this.subtitle,
+    required this.unitPrice,
+    required this.newPrice,
     DateTime? date,
     this.color = Colors.deepPurpleAccent,
   }) : date = date ?? DateTime.now();

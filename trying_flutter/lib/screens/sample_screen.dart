@@ -14,26 +14,30 @@ class SampleScreen extends StatefulWidget {
 class _SampleScreenState extends State<SampleScreen> {
   final List<SampleClass> samples = [
     SampleClass(
-      title: 'First Title',
-      subtitle: 'Nice Description',
+      title: 'Onigiri',
+      unitPrice: 55.00,
+      newPrice: 60.00,
       date: DateTime.now(),
       color: Colors.deepOrange,
     ),
     SampleClass(
-      title: 'Second Title',
-      subtitle: 'Great Description',
+      title: 'Fuwa fuwa bun',
+      unitPrice: 42.00,
+      newPrice: 50.00,
       date: DateTime.now(),
     ),
   ];
 
   void _addSamples(
     String title,
-    String subtitle,
+    double unitPrice,
+    double newPrice,
     DateTime date,
   ) {
     final smpls = SampleClass(
       title: title,
-      subtitle: subtitle,
+      unitPrice: unitPrice,
+      newPrice: newPrice,
       date: date,
     );
 

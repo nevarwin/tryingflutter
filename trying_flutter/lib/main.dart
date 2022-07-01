@@ -20,10 +20,10 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.amber,
           fontFamily: 'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
-                titleSmall: const TextStyle(
+                titleMedium: const TextStyle(
                   fontFamily: 'OpenSans',
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 55,
                 ),
               ),
           appBarTheme: AppBarTheme(

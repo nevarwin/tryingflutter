@@ -14,29 +14,36 @@ class NewSamples extends StatefulWidget {
 
 class _NewSamplesState extends State<NewSamples> {
   final titleController = TextEditingController();
-  final subController = TextEditingController();
+  final unitPriceController = TextEditingController();
+  final newPriceController = TextEditingController();
   final dateController = TextEditingController();
 
   @override
   void dispose() {
     titleController.dispose();
-    subController.dispose();
+    unitPriceController.dispose();
+    newPriceController.dispose();
     dateController.dispose();
     super.dispose();
   }
 
   void _submit() {
     final tCtrl = titleController.text;
-    final subCtrl = subController.text;
+    final uPriceCtrl = double.parse(unitPriceController.text);
+    final newPriceCtrl = double.parse(unitPriceController.text);
     final dateCtrl = DateTime.parse(dateController.text);
 
-    if (tCtrl.isEmpty && subCtrl.isEmpty && dateCtrl == null) {
+    if (tCtrl.isEmpty &&
+        uPriceCtrl == 0 &&
+        newPriceCtrl == 0 &&
+        dateCtrl == null) {
       return;
     }
 
     widget.sampleFunc(
       tCtrl,
-      subCtrl,
+      uPriceCtrl,
+      newPriceCtrl,
       dateCtrl,
     );
 
@@ -57,9 +64,15 @@ class _NewSamplesState extends State<NewSamples> {
           ),
           TextField(
             onSubmitted: (_) => _submit(),
-            decoration: InputDecoration(labelText: 'Subtitle'),
-            controller: subController,
-            keyboardType: TextInputType.text,
+            decoration: InputDecoration(labelText: 'Unit Price'),
+            controller: unitPriceController,
+            keyboardType: TextInputType.number,
+          ),
+          TextField(
+            onSubmitted: (_) => _submit(),
+            decoration: InputDecoration(labelText: 'New Price'),
+            controller: newPriceController,
+            keyboardType: TextInputType.number,
           ),
           TextField(
             onSubmitted: (_) => _submit(),
