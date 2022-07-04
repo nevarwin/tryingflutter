@@ -14,22 +14,22 @@ class TodoScreen extends StatefulWidget {
 
 class _TodoScreenState extends State<TodoScreen> {
   final List<TodoClass> _todo = [
-    // TodoClass(
-    //   id: '1',
-    //   title: 'title1',
-    //   description: 'description1 ',
-    //   number: 1,
-    //   date: DateTime.now(),
-    //   color: Colors.teal,
-    // ),
-    // TodoClass(
-    //   id: '2',
-    //   title: 'title2',
-    //   description: 'description2 ',
-    //   number: 1,
-    //   date: DateTime.now(),
-    //   color: Colors.orangeAccent,
-    // ),
+    TodoClass(
+      id: '1',
+      title: 'title1',
+      description: 'description1 ',
+      number: 1,
+      date: DateTime.now(),
+      color: Colors.teal,
+    ),
+    TodoClass(
+      id: '2',
+      title: 'title2',
+      description: 'description2 ',
+      number: 1,
+      date: DateTime.now(),
+      color: Colors.orangeAccent,
+    ),
   ];
 
   List<TodoClass> get _recentTodo {

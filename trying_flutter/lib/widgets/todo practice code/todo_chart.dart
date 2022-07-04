@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:trying_flutter/widgets/todo%20practice%20code/todo_chart_bar.dart';
 import '../../models/todo_class.dart';
 
 class TodoChart extends StatelessWidget {
@@ -39,7 +40,7 @@ class TodoChart extends StatelessWidget {
       margin: EdgeInsets.all(6),
       child: Row(
         children: groupedTodoValues.map((data) {
-          return Text('Hello');
+          return TodoChartBar();
         }).toList(),
       ),
     );

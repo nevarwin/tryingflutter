@@ -33,6 +33,15 @@ class Chart extends StatelessWidget {
     });
   }
 
+  double get _totalSpending {
+    return groupedTransactionValues.fold(
+      0.0,
+      (previousValue, element) {
+        return previousValue + (element['amount'] as double);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -41,7 +50,13 @@ class Chart extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: groupedTransactionValues.map((data) {
-          return ChartBar();
+          return ChartBar(
+            label: data['day'].toString(),
+            spendingAmount: data['amount'] as double,
+            percentage: _totalSpending == 0.0
+                ? 0.0
+                : _totalSpending / (data['amount'] as double),
+          );
         }).toList(),
       ),
     );
