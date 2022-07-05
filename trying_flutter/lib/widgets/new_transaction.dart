@@ -15,10 +15,12 @@ class NewTransaction extends StatefulWidget {
 class _NewTransactionState extends State<NewTransaction> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+  final dateController = TextEditingController();
 
   void _submit() {
     final tCtrl = titleController.text;
     final aCtrl = double.parse(amountController.text);
+    final dCtrl = DateTime.parse(dateController.text);
 
     if (tCtrl.isEmpty && aCtrl <= 0) {
       return;
@@ -27,6 +29,7 @@ class _NewTransactionState extends State<NewTransaction> {
     widget.addTx(
       tCtrl,
       aCtrl,
+      dCtrl,
     );
 
     Navigator.of(context).pop();
@@ -36,6 +39,7 @@ class _NewTransactionState extends State<NewTransaction> {
   void dispose() {
     titleController.dispose();
     amountController.dispose();
+    dateController.dispose();
     super.dispose();
   }
 
@@ -49,19 +53,30 @@ class _NewTransactionState extends State<NewTransaction> {
             children: [
               TextField(
                 controller: titleController,
-                decoration: const InputDecoration(
-                  labelText: 'Title',
-                ),
+                decoration: const InputDecoration(labelText: 'Title'),
                 keyboardType: TextInputType.text,
-                onSubmitted: (_) => _submit(),
+                // onSubmitted: (_) => _submit(),
               ),
               TextField(
                 controller: amountController,
-                decoration: const InputDecoration(
-                  labelText: 'Amount',
-                ),
+                decoration: const InputDecoration(labelText: 'Amount'),
                 keyboardType: TextInputType.number,
+                // onSubmitted: (_) => _submit(),
+              ),
+              TextField(
+                readOnly: true,
+                controller: dateController,
+                decoration: InputDecoration(hintText: 'Date'),
                 onSubmitted: (_) => _submit(),
+                onTap: () async {
+                  var date = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime(2100),
+                  );
+                  dateController.text = date.toString().substring(0, 10);
+                },
               ),
               FlatButton(
                 onPressed: () {

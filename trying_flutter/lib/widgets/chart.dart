@@ -46,16 +46,15 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      margin: const EdgeInsets.all(20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: groupedTransactionValues.map((data) {
           return ChartBar(
             label: data['day'].toString(),
             spendingAmount: data['amount'] as double,
             percentage: _totalSpending == 0.0
                 ? 0.0
-                : _totalSpending / (data['amount'] as double),
+                : (data['amount'] as double) / _totalSpending,
           );
         }).toList(),
       ),

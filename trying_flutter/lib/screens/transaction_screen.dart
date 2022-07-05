@@ -31,11 +31,12 @@ class _TransactionScreenState extends State<TransactionScreen> {
   void _addNewTransaction(
     String title,
     double amount,
+    DateTime date,
   ) {
     final newtx = Transaction(
       title: title,
       amount: amount,
-      date: DateTime.now(),
+      date: date,
       id: DateTime.now().toString(),
     );
 
@@ -77,7 +78,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
       body: Column(
         children: [
           Chart(recentTransaction: _recentTransaction),
-          TransactionsList(transaction: _userTransactions),
+          Expanded(child: TransactionsList(transaction: _userTransactions)),
         ],
       ),
       floatingActionButton: FloatingActionButton(

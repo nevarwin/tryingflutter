@@ -18,7 +18,7 @@ class TodoChart extends StatelessWidget {
       );
 
       var totalSum = 0.0;
-      for (var i = 0; i <= recentTodo.length; i++) {
+      for (var i = 0; i < recentTodo.length; i++) {
         if (recentTodo[i].date.day == weekDay.day &&
             recentTodo[i].date.month == weekDay.month &&
             recentTodo[i].date.year == weekDay.year) {
