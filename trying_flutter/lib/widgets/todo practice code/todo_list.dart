@@ -58,6 +58,7 @@ class TodoList extends StatelessWidget {
                             ),
                           ),
                         ),
+                        Text(todo[index].number.toString()),
                         Text(
                           DateFormat.yMEd().format(DateTime.now()),
                           style: const TextStyle(

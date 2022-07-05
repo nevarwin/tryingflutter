@@ -33,14 +33,26 @@ class TodoChart extends StatelessWidget {
     });
   }
 
+  double get _totalSum {
+    return groupedTodoValues.fold(0.0, (previousValue, element) {
+      return previousValue + (element['number'] as double);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(6),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: groupedTodoValues.map((data) {
-          return TodoChartBar();
+          return TodoChartBar(
+            label: data['day'].toString(),
+            number: data['number'] as double,
+            percentage:
+                _totalSum == 0.0 ? 0.0 : (data['number'] as double) / _totalSum,
+          );
         }).toList(),
       ),
     );
