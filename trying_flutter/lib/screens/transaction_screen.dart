@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/new_transaction.dart';
-import '../widgets/transactions_list.dart';
-import '../widgets/chart.dart';
+import '../widgets/transaction practice code/new_transaction.dart';
+import '../widgets/transaction practice code/transactions_list.dart';
+import '../widgets/transaction practice code/chart.dart';
+
 import '../models/transaction.dart';
 
 class TransactionScreen extends StatefulWidget {
