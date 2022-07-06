@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter/cupertino.dart';
 
 class NewTransaction extends StatefulWidget {
   NewTransaction({
@@ -15,12 +16,11 @@ class NewTransaction extends StatefulWidget {
 class _NewTransactionState extends State<NewTransaction> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
-  final dateController = TextEditingController();
+  DateTime? _selectedDate;
 
   void _submit() {
     final tCtrl = titleController.text;
     final aCtrl = double.parse(amountController.text);
-    final dCtrl = DateTime.parse(dateController.text);
 
     if (tCtrl.isEmpty && aCtrl <= 0) {
       return;
@@ -29,7 +29,7 @@ class _NewTransactionState extends State<NewTransaction> {
     widget.addTx(
       tCtrl,
       aCtrl,
-      dCtrl,
+      _selectedDate,
     );
 
     Navigator.of(context).pop();
@@ -39,8 +39,27 @@ class _NewTransactionState extends State<NewTransaction> {
   void dispose() {
     titleController.dispose();
     amountController.dispose();
-    dateController.dispose();
     super.dispose();
+  }
+
+  void _presentDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2021),
+      lastDate: DateTime.now(),
+    ).then(
+      (pickedDate) {
+        // if the user did not pick a date
+        if (pickedDate == null) {
+          return;
+        }
+        // to rerun build
+        setState(() {
+          _selectedDate = pickedDate;
+        });
+      },
+    );
   }
 
   @override
@@ -63,20 +82,26 @@ class _NewTransactionState extends State<NewTransaction> {
                 keyboardType: TextInputType.number,
                 // onSubmitted: (_) => _submit(),
               ),
-              TextField(
-                readOnly: true,
-                controller: dateController,
-                decoration: InputDecoration(hintText: 'Date'),
-                onSubmitted: (_) => _submit(),
-                onTap: () async {
-                  var date = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime.now(),
-                    lastDate: DateTime(2100),
-                  );
-                  dateController.text = date.toString().substring(0, 10);
-                },
+              SizedBox(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        _selectedDate == null
+                            ? 'No Date Chosen'
+                            : 'Picked Date: ${DateFormat.yMEd().format(_selectedDate!)}',
+                      ),
+                    ),
+
+                    // ios styled button
+                    FlatButton(
+                      color: Theme.of(context).primaryColor,
+                      child: const Text('Choose Date'),
+                      onPressed: _presentDatePicker,
+                    ),
+                  ],
+                ),
               ),
               FlatButton(
                 onPressed: () {

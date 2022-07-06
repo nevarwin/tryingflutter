@@ -48,7 +48,7 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: groupedTransactionValues.map((data) {
           return ChartBar(
             label: data['day'].toString(),
