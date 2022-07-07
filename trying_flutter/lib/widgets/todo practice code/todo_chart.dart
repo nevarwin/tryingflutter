@@ -14,7 +14,9 @@ class TodoChart extends StatelessWidget {
   List<Map<String, Object>> get groupedTodoValues {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(
-        Duration(days: index),
+        Duration(
+          days: index,
+        ),
       );
 
       var totalSum = 0.0;
@@ -43,7 +45,7 @@ class TodoChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      margin: EdgeInsets.all(6),
+      margin: const EdgeInsets.all(6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: groupedTodoValues.map((data) {

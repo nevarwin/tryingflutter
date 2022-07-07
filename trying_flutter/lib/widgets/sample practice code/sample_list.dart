@@ -13,82 +13,78 @@ class SampleList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: samples.isEmpty
-          ? Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  height: 300,
-                  child: Image.asset(
-                    'assets/images/waiting.png',
-                    fit: BoxFit.contain,
+    return samples.isEmpty
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 300,
+                child: Image.asset(
+                  'assets/images/waiting.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              Text(
+                'Nothing',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+            ],
+          )
+        : ListView.builder(
+            itemCount: samples.length,
+            itemBuilder: (context, index) {
+              return Card(
+                child: ListTile(
+                  tileColor: Colors.white70,
+                  style: ListTileStyle.list,
+                  title: Text(
+                    samples[index].title,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 3.0,
+                        ),
+                        child: Text(
+                          samples[index].unitPrice.toStringAsFixed(2),
+                          style: const TextStyle(
+                            color: Colors.black87,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 3.0,
+                        ),
+                        child: Text(
+                          samples[index].newPrice.toStringAsFixed(2),
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        DateFormat.yMEd().format(DateTime.now()),
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      )
+                    ],
+                  ),
+                  leading: CircleAvatar(
+                    backgroundColor: samples[index].color,
                   ),
                 ),
-                const SizedBox(height: 10.0),
-                Text(
-                  'Nothing',
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-              ],
-            )
-          : Expanded(
-              child: ListView.builder(
-                itemCount: samples.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      tileColor: Colors.white70,
-                      style: ListTileStyle.list,
-                      title: Text(
-                        samples[index].title,
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              bottom: 3.0,
-                            ),
-                            child: Text(
-                              samples[index].unitPrice.toStringAsFixed(2),
-                              style: const TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              bottom: 3.0,
-                            ),
-                            child: Text(
-                              samples[index].newPrice.toStringAsFixed(2),
-                              style: const TextStyle(
-                                color: Colors.grey,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            DateFormat.yMEd().format(DateTime.now()),
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 14,
-                            ),
-                          )
-                        ],
-                      ),
-                      leading: CircleAvatar(
-                        backgroundColor: samples[index].color,
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-    );
+              );
+            },
+          );
   }
 }

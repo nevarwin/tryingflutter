@@ -1,15 +1,17 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
-class TodoChartBar extends StatelessWidget {
-  const TodoChartBar({
+class SamplesChartBar extends StatelessWidget {
+  const SamplesChartBar({
     Key? key,
     required this.label,
-    required this.number,
+    required this.amount,
     required this.percentage,
   }) : super(key: key);
 
+  final double amount;
   final String label;
-  final double number;
   final double percentage;
 
   @override
@@ -21,7 +23,7 @@ class TodoChartBar extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: FittedBox(
               child: Text(
-                '$number',
+                '$amount',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
@@ -36,23 +38,23 @@ class TodoChartBar extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Color.fromARGB(136, 12, 50, 8),
+                      color: Colors.blue,
                       width: 1.5,
                     ),
-                    color: Color.fromARGB(255, 74, 126, 101),
-                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.blueAccent,
+                    borderRadius: BorderRadius.circular(5),
                   ),
-                ),
-                FractionallySizedBox(
-                  heightFactor: percentage,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Color.fromARGB(136, 12, 50, 8),
-                        width: 1.5,
+                  child: FractionallySizedBox(
+                    heightFactor: percentage,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.blue,
+                          width: 1.5,
+                        ),
+                        color: Colors.blueAccent,
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                      color: Color.fromARGB(255, 120, 220, 172),
-                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
                 )
@@ -68,3 +70,5 @@ class TodoChartBar extends StatelessWidget {
     );
   }
 }
+
+class Expaned {}

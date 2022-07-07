@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/sample_class.dart';
 import '../widgets/sample practice code/new_samples.dart';
 import '../widgets/sample practice code/sample_list.dart';
+import '../widgets/sample practice code/samples_chart.dart';
 
 class SampleScreen extends StatefulWidget {
   const SampleScreen({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class SampleScreen extends StatefulWidget {
 }
 
 class _SampleScreenState extends State<SampleScreen> {
-  final List<SampleClass> samples = [
+  final List<SampleClass> _samples = [
     SampleClass(
       title: 'Onigiri',
       unitPrice: 55.00,
@@ -42,7 +43,7 @@ class _SampleScreenState extends State<SampleScreen> {
     );
 
     setState(() {
-      samples.add(smpls);
+      _samples.add(smpls);
     });
   }
 
@@ -61,12 +62,25 @@ class _SampleScreenState extends State<SampleScreen> {
     );
   }
 
+  List<SampleClass> get _recentSamples {
+    return _samples.where((element) {
+      return element.date.isAfter(
+        DateTime.now().subtract(
+          const Duration(
+            days: 7,
+          ),
+        ),
+      );
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          SampleList(samples: samples),
+          SamplesChart(recentSamples: _recentSamples),
+          Expanded(child: SampleList(samples: _samples)),
         ],
       ),
       floatingActionButton: FloatingActionButton(

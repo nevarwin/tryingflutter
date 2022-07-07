@@ -31,50 +31,48 @@ class TodoList extends StatelessWidget {
               ),
             ],
           )
-        : Expanded(
-            child: ListView.builder(
-              itemCount: todo.length,
-              itemBuilder: ((context, index) {
-                return Card(
-                  child: ListTile(
-                    tileColor: Colors.white70,
-                    style: ListTileStyle.list,
-                    title: Text(
-                      todo[index].title,
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            bottom: 3.0,
-                          ),
-                          child: Text(
-                            todo[index].description,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16,
-                            ),
-                          ),
+        : ListView.builder(
+            itemCount: todo.length,
+            itemBuilder: ((context, index) {
+              return Card(
+                child: ListTile(
+                  tileColor: Colors.white70,
+                  style: ListTileStyle.list,
+                  title: Text(
+                    todo[index].title,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 3.0,
                         ),
-                        Text(todo[index].number.toString()),
-                        Text(
-                          DateFormat.yMEd().format(DateTime.now()),
+                        child: Text(
+                          todo[index].description,
                           style: const TextStyle(
                             color: Colors.grey,
-                            fontSize: 14,
+                            fontSize: 16,
                           ),
-                        )
-                      ],
-                    ),
-                    leading: CircleAvatar(
-                      backgroundColor: todo[index].color,
-                    ),
+                        ),
+                      ),
+                      Text(todo[index].number.toString()),
+                      Text(
+                        DateFormat.yMEd().format(DateTime.now()),
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      )
+                    ],
                   ),
-                );
-              }),
-            ),
+                  leading: CircleAvatar(
+                    backgroundColor: todo[index].color,
+                  ),
+                ),
+              );
+            }),
           );
   }
 }

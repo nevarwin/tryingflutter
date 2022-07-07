@@ -83,8 +83,8 @@ class _TodoScreenState extends State<TodoScreen> {
     return Scaffold(
       body: Column(
         children: [
-          TodoChart(recentTodo: _recentTodo),
-          TodoList(todo: _todo),
+          Expanded(child: TodoChart(recentTodo: _recentTodo)),
+          Expanded(child: TodoList(todo: _todo)),
         ],
       ),
       floatingActionButton: FloatingActionButton(
