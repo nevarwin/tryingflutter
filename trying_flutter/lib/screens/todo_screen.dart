@@ -27,7 +27,9 @@ class _TodoScreenState extends State<TodoScreen> {
       title: 'title2',
       description: 'description2 ',
       number: 1,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(
+        const Duration(days: 4),
+      ),
       color: Colors.orangeAccent,
     ),
   ];
@@ -86,7 +88,7 @@ class _TodoScreenState extends State<TodoScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightGreenAccent,
+        backgroundColor: Colors.greenAccent,
         onPressed: () => _showModal(),
         child: const Icon(Icons.add),
       ),

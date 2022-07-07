@@ -16,6 +16,7 @@ class TodoChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
+        verticalDirection: VerticalDirection.up,
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -63,7 +64,10 @@ class TodoChartBar extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(label),
+          ),
         ],
       ),
     );

@@ -83,8 +83,8 @@ class _NewTodoState extends State<NewTodo> {
               var date = await showDatePicker(
                 context: context,
                 initialDate: DateTime.now(),
-                firstDate: DateTime(1900),
-                lastDate: DateTime(2100),
+                firstDate: DateTime(2022),
+                lastDate: DateTime.now(),
               );
               dateController.text = date.toString().substring(0, 10);
             },

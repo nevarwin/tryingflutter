@@ -46,7 +46,7 @@ class _NewTransactionState extends State<NewTransaction> {
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2021),
+      firstDate: DateTime(2022),
       lastDate: DateTime.now(),
     ).then(
       (pickedDate) {
