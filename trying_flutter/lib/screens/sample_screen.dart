@@ -83,7 +83,7 @@ class _SampleScreenState extends State<SampleScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SamplesChart(recentSamples: _recentSamples),
-          Expanded(child: SampleList(samples: _samples)),
+          SampleList(samples: _samples),
         ],
       ),
       floatingActionButton: FloatingActionButton(

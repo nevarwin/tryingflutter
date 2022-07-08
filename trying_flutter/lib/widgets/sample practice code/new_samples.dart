@@ -54,7 +54,6 @@ class _NewSamplesState extends State<NewSamples> {
         }
         setState(() {
           _choosenDate = pickedDate;
-          _submit();
         });
       },
     );
@@ -91,20 +90,18 @@ class _NewSamplesState extends State<NewSamples> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    _choosenDate == null
-                        ? 'No date choosen'
-                        : 'Date: ${DateFormat.yMEd().format(_choosenDate!)}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                  TextButton(
+                    onPressed: _presentDatePicker,
+                    child: Text(
+                      _choosenDate == null
+                          ? 'Set Date'
+                          : 'Date: ${DateFormat.yMEd().format(_choosenDate!)}',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
-                  FlatButton(
-                    child: const Text('Select date'),
-                    color: Colors.blue,
-                    onPressed: _presentDatePicker,
-                  )
                 ],
               ),
             ),

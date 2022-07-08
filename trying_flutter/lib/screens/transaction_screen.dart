@@ -60,6 +60,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
 
   void _showModal(BuildContext context) {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
       builder: (_) {
         return GestureDetector(

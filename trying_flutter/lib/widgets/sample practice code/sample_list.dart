@@ -15,14 +15,12 @@ class SampleList extends StatelessWidget {
   Widget build(BuildContext context) {
     return samples.isEmpty
         ? Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                height: 300,
+              SizedBox(
+                height: 150,
                 child: Image.asset(
                   'assets/images/waiting.png',
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
                 ),
               ),
               const SizedBox(height: 10.0),
