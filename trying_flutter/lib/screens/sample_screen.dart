@@ -50,7 +50,6 @@ class _SampleScreenState extends State<SampleScreen> {
   void _showModal() {
     showModalBottomSheet(
       isScrollControlled: true,
-      barrierColor: Color.fromARGB(125, 245, 182, 65),
       context: context,
       builder: (_) {
         return GestureDetector(
@@ -83,7 +82,7 @@ class _SampleScreenState extends State<SampleScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SamplesChart(recentSamples: _recentSamples),
-          SampleList(samples: _samples),
+          Expanded(child: SampleList(samples: _samples)),
         ],
       ),
       floatingActionButton: FloatingActionButton(

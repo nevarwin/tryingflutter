@@ -5,13 +5,11 @@ class SampleClass {
   final double gAmount;
   final double charge;
   final DateTime date;
-  final Color color;
 
   SampleClass({
     required this.gName,
     required this.gAmount,
     required this.charge,
     DateTime? date,
-    this.color = Colors.deepPurpleAccent,
   }) : date = date ?? DateTime.now();
 }

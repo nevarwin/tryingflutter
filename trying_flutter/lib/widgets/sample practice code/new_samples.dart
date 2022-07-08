@@ -14,29 +14,34 @@ class NewSamples extends StatefulWidget {
 }
 
 class _NewSamplesState extends State<NewSamples> {
-  final gName = TextEditingController();
-  final gAmount = TextEditingController();
-  final charge = TextEditingController();
+  final gNameController = TextEditingController();
+  final gAmountController = TextEditingController();
+  final chargeController = TextEditingController();
   DateTime? _choosenDate;
 
   @override
   void dispose() {
-    gName.dispose();
-    gAmount.dispose();
-    charge.dispose();
+    gNameController.dispose();
+    gAmountController.dispose();
+    chargeController.dispose();
     super.dispose();
   }
 
   void _submit() {
-    final tCtrl = gName.text;
-    final uPriceCtrl = double.parse(gAmount.text);
-    final newPriceCtrl = double.parse(gAmount.text);
+    final gName = gNameController.text;
+    final gAmountCtrl = double.parse(gAmountController.text);
+    final gCharge = double.parse(chargeController.text);
 
-    if (tCtrl.isEmpty && uPriceCtrl == 0 && newPriceCtrl == 0) {
+    if (gName == '' && gAmountCtrl == 0 && gCharge == 0) {
       return;
     }
 
-    widget.sampleFunc(tCtrl, uPriceCtrl, newPriceCtrl, _choosenDate);
+    widget.sampleFunc(
+      gName,
+      gAmountCtrl,
+      gCharge,
+      _choosenDate,
+    );
 
     Navigator.of(context).pop();
   }
@@ -72,17 +77,17 @@ class _NewSamplesState extends State<NewSamples> {
               autofocus: true,
               autocorrect: true,
               decoration: const InputDecoration(labelText: 'Gcash Name'),
-              controller: gName,
+              controller: gNameController,
               keyboardType: TextInputType.text,
             ),
             TextField(
               decoration: const InputDecoration(labelText: 'Gcash Amount'),
-              controller: gAmount,
+              controller: gAmountController,
               keyboardType: TextInputType.number,
             ),
             TextField(
               decoration: const InputDecoration(labelText: 'Charge'),
-              controller: charge,
+              controller: chargeController,
               keyboardType: TextInputType.number,
             ),
             SizedBox(

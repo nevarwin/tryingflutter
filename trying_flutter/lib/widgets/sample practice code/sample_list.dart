@@ -17,7 +17,7 @@ class SampleList extends StatelessWidget {
         ? Column(
             children: [
               SizedBox(
-                height: 150,
+                height: 100,
                 child: Image.asset(
                   'assets/images/waiting.png',
                   fit: BoxFit.cover,
@@ -61,7 +61,7 @@ class SampleList extends StatelessWidget {
                           bottom: 3.0,
                         ),
                         child: Text(
-                          samples[index].charge.toStringAsFixed(2),
+                          '${samples[index].charge}',
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -69,16 +69,13 @@ class SampleList extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        DateFormat.yMMMMEEEEd().format(DateTime.now()),
+                        DateFormat('hh:mm EEEE-MMMM').format(DateTime.now()),
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,
                         ),
                       )
                     ],
-                  ),
-                  leading: CircleAvatar(
-                    backgroundColor: samples[index].color,
                   ),
                 ),
               );
