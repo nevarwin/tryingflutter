@@ -40,7 +40,7 @@ class SampleList extends StatelessWidget {
                   tileColor: Colors.white70,
                   style: ListTileStyle.list,
                   title: Text(
-                    samples[index].title,
+                    samples[index].gName,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   subtitle: Column(
@@ -51,7 +51,7 @@ class SampleList extends StatelessWidget {
                           bottom: 3.0,
                         ),
                         child: Text(
-                          samples[index].unitPrice.toStringAsFixed(2),
+                          samples[index].gAmount.toStringAsFixed(2),
                           style: const TextStyle(
                             color: Colors.black87,
                             fontSize: 16,
@@ -63,7 +63,7 @@ class SampleList extends StatelessWidget {
                           bottom: 3.0,
                         ),
                         child: Text(
-                          samples[index].newPrice.toStringAsFixed(2),
+                          samples[index].charge.toStringAsFixed(2),
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -71,7 +71,7 @@ class SampleList extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        DateFormat.yMEd().format(DateTime.now()),
+                        DateFormat.yMMMMEEEEd().format(DateTime.now()),
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 14,

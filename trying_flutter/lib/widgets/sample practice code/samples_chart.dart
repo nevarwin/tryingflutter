@@ -25,7 +25,7 @@ class SamplesChart extends StatelessWidget {
         if (recentSamples[i].date.day == weekDay.day &&
             recentSamples[i].date.month == weekDay.month &&
             recentSamples[i].date.year == weekDay.year) {
-          totalSum += recentSamples[i].newPrice;
+          totalSum += recentSamples[i].charge;
         }
       }
 

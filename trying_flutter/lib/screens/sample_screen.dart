@@ -14,31 +14,31 @@ class SampleScreen extends StatefulWidget {
 
 class _SampleScreenState extends State<SampleScreen> {
   final List<SampleClass> _samples = [
-    SampleClass(
-      title: 'Onigiri',
-      unitPrice: 55.00,
-      newPrice: 60.00,
-      date: DateTime.now(),
-      color: Colors.deepOrange,
-    ),
-    SampleClass(
-      title: 'Fuwa fuwa bun',
-      unitPrice: 42.00,
-      newPrice: 50.00,
-      date: DateTime.now(),
-    ),
+    // SampleClass(
+    //   gName: 'Onigiri',
+    //   gAmount: 55.00,
+    //   charge: 60.00,
+    //   date: DateTime.now(),
+    //   color: Colors.deepOrange,
+    // ),
+    // SampleClass(
+    //   gName: 'Fuwa fuwa bun',
+    //   gAmount: 42.00,
+    //   charge: 50.00,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   void _addSamples(
-    String title,
-    double unitPrice,
-    double newPrice,
+    String gCashName,
+    double gCashAmount,
+    double gCashCharge,
     DateTime date,
   ) {
     final smpls = SampleClass(
-      title: title,
-      unitPrice: unitPrice,
-      newPrice: newPrice,
+      gName: gCashName,
+      gAmount: gCashAmount,
+      charge: gCashCharge,
       date: date,
     );
 
@@ -49,6 +49,8 @@ class _SampleScreenState extends State<SampleScreen> {
 
   void _showModal() {
     showModalBottomSheet(
+      isScrollControlled: true,
+      barrierColor: Color.fromARGB(125, 245, 182, 65),
       context: context,
       builder: (_) {
         return GestureDetector(
@@ -78,6 +80,7 @@ class _SampleScreenState extends State<SampleScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           SamplesChart(recentSamples: _recentSamples),
           Expanded(child: SampleList(samples: _samples)),
