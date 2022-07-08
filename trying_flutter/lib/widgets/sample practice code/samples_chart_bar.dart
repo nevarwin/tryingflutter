@@ -38,26 +38,26 @@ class SamplesChartBar extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.blue,
+                      color: Color.fromARGB(255, 15, 115, 197),
                       width: 1.5,
                     ),
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.circular(5),
+                    color: Color.fromARGB(255, 132, 166, 224),
+                    borderRadius: BorderRadius.circular(3),
                   ),
-                  child: FractionallySizedBox(
-                    heightFactor: percentage,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.blue,
-                          width: 1.5,
-                        ),
-                        color: Colors.blueAccent,
-                        borderRadius: BorderRadius.circular(5),
+                ),
+                FractionallySizedBox(
+                  heightFactor: percentage,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color.fromARGB(255, 15, 115, 197),
+                        width: 1.5,
                       ),
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(3),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -70,5 +70,3 @@ class SamplesChartBar extends StatelessWidget {
     );
   }
 }
-
-class Expaned {}
