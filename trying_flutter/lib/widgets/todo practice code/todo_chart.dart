@@ -33,7 +33,7 @@ class TodoChart extends StatelessWidget {
         'day': DateFormat.E().format(weekDay),
         'number': totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
   double get _totalSum {
@@ -46,7 +46,7 @@ class TodoChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      margin: const EdgeInsets.all(6),
+      margin: const EdgeInsets.all(16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: groupedTodoValues.map((data) {

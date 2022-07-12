@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SampleClass {
   final String gName;
   final double gAmount;
-  final double charge;
+  final int charge;
   final DateTime date;
 
   SampleClass({

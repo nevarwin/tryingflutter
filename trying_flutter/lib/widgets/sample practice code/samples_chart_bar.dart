@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class SamplesChartBar extends StatelessWidget {
@@ -10,7 +8,7 @@ class SamplesChartBar extends StatelessWidget {
     required this.percentage,
   }) : super(key: key);
 
-  final double amount;
+  final int amount;
   final String label;
   final double percentage;
 

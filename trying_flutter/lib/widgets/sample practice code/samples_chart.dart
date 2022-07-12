@@ -20,7 +20,7 @@ class SamplesChart extends StatelessWidget {
         ),
       );
 
-      var totalSum = 0.0;
+      var totalSum = 0;
       for (var i = 0; i < recentSamples.length; i++) {
         if (recentSamples[i].date.day == weekDay.day &&
             recentSamples[i].date.month == weekDay.month &&
@@ -33,12 +33,12 @@ class SamplesChart extends StatelessWidget {
         'day': DateFormat.E().format(weekDay),
         'profit': totalSum,
       };
-    });
+    }).reversed.toList();
   }
 
-  double get _sumProfit {
-    return groupedSampleValues.fold(0.0, (previousValue, element) {
-      return previousValue + (element['profit'] as double);
+  int get _sumProfit {
+    return groupedSampleValues.fold(0, (previousValue, element) {
+      return previousValue + (element['profit'] as int);
     });
   }
 
@@ -46,16 +46,15 @@ class SamplesChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 6,
-      margin: const EdgeInsets.all(6),
+      margin: const EdgeInsets.all(16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: groupedSampleValues.map((sData) {
           return SamplesChartBar(
             label: sData['day'].toString(),
-            amount: sData['profit'] as double,
-            percentage: _sumProfit == 0.0
-                ? 0.0
-                : (sData['profit'] as double) / _sumProfit,
+            amount: sData['profit'] as int,
+            percentage:
+                _sumProfit == 0 ? 0 : (sData['profit'] as int) / _sumProfit,
           );
         }).toList(),
       ),

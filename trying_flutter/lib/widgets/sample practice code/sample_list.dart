@@ -36,9 +36,27 @@ class SampleList extends StatelessWidget {
             itemCount: samples.length,
             itemBuilder: (context, index) {
               return Card(
+                elevation: 5,
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 5,
+                  vertical: 8,
+                ),
                 child: ListTile(
                   tileColor: Colors.white70,
                   style: ListTileStyle.list,
+                  leading: FittedBox(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        child: FittedBox(
+                          child: Text(
+                            '${samples[index].charge}',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   title: Text(
                     samples[index].gName,
                     style: Theme.of(context).textTheme.titleMedium,
@@ -51,21 +69,9 @@ class SampleList extends StatelessWidget {
                           bottom: 3.0,
                         ),
                         child: Text(
-                          samples[index].gAmount.toStringAsFixed(2),
+                          'Gcash Amount: ${samples[index].gAmount.toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: Colors.black87,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 3.0,
-                        ),
-                        child: Text(
-                          '${samples[index].charge}',
-                          style: const TextStyle(
-                            color: Colors.grey,
                             fontSize: 16,
                           ),
                         ),

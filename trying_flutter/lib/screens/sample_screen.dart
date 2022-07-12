@@ -32,7 +32,7 @@ class _SampleScreenState extends State<SampleScreen> {
   void _addSamples(
     String gCashName,
     double gCashAmount,
-    double gCashCharge,
+    int gCashCharge,
     DateTime date,
   ) {
     final smpls = SampleClass(

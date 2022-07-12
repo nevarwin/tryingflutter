@@ -30,7 +30,7 @@ class _NewSamplesState extends State<NewSamples> {
   void _submit() {
     final gName = gNameController.text;
     final gAmountCtrl = double.parse(gAmountController.text);
-    final gCharge = double.parse(chargeController.text);
+    final gCharge = int.parse(chargeController.text);
 
     if (gName == '' && gAmountCtrl == 0 && gCharge == 0) {
       return;
