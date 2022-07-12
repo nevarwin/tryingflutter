@@ -16,11 +16,13 @@ class SampleList extends StatelessWidget {
     return samples.isEmpty
         ? Column(
             children: [
-              SizedBox(
-                height: 100,
-                child: Image.asset(
-                  'assets/images/waiting.png',
-                  fit: BoxFit.cover,
+              Expanded(
+                child: SizedBox(
+                  height: 300,
+                  child: Image.asset(
+                    'assets/images/waiting.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               const SizedBox(height: 10.0),
