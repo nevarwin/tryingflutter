@@ -17,14 +17,11 @@ class TodoChartBar extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FittedBox(
-              child: Text(
-                '$number',
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+          FittedBox(
+            child: Text(
+              '$number',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),

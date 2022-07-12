@@ -48,17 +48,20 @@ class Chart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: const EdgeInsets.all(16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: groupedTransactionValues.map((data) {
-          return ChartBar(
-            label: data['day'].toString(),
-            spendingAmount: data['amount'] as double,
-            percentage: _totalSpending == 0.0
-                ? 0.0
-                : (data['amount'] as double) / _totalSpending,
-          );
-        }).toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: groupedTransactionValues.map((data) {
+            return ChartBar(
+              label: data['day'].toString(),
+              spendingAmount: data['amount'] as double,
+              percentage: _totalSpending == 0.0
+                  ? 0.0
+                  : (data['amount'] as double) / _totalSpending,
+            );
+          }).toList(),
+        ),
       ),
     );
   }

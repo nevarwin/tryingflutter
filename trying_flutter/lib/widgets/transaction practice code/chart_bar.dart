@@ -17,14 +17,11 @@ class ChartBar extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: FittedBox(
-              child: Text(
-                'Php$spendingAmount',
-                style: const TextStyle(
-                  fontSize: 11,
-                ),
+          FittedBox(
+            child: Text(
+              'Php$spendingAmount',
+              style: const TextStyle(
+                fontSize: 11,
               ),
             ),
           ),

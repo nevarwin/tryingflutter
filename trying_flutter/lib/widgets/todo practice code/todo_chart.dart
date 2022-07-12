@@ -47,16 +47,20 @@ class TodoChart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: const EdgeInsets.all(16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: groupedTodoValues.map((data) {
-          return TodoChartBar(
-            label: data['day'].toString(),
-            number: data['number'] as double,
-            percentage:
-                _totalSum == 0.0 ? 0.0 : (data['number'] as double) / _totalSum,
-          );
-        }).toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedTodoValues.map((data) {
+            return TodoChartBar(
+              label: data['day'].toString(),
+              number: data['number'] as double,
+              percentage: _totalSum == 0.0
+                  ? 0.0
+                  : (data['number'] as double) / _totalSum,
+            );
+          }).toList(),
+        ),
       ),
     );
   }

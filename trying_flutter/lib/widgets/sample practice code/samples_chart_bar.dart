@@ -17,8 +17,8 @@ class SamplesChartBar extends StatelessWidget {
     return Expanded(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          Container(
+            height: 20,
             child: FittedBox(
               child: Text(
                 '$amount',
@@ -29,7 +29,7 @@ class SamplesChartBar extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 90,
+            height: 100,
             width: 30,
             child: Stack(
               children: [

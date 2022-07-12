@@ -47,16 +47,19 @@ class SamplesChart extends StatelessWidget {
     return Card(
       elevation: 6,
       margin: const EdgeInsets.all(16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: groupedSampleValues.map((sData) {
-          return SamplesChartBar(
-            label: sData['day'].toString(),
-            amount: sData['profit'] as int,
-            percentage:
-                _sumProfit == 0 ? 0 : (sData['profit'] as int) / _sumProfit,
-          );
-        }).toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: groupedSampleValues.map((sData) {
+            return SamplesChartBar(
+              label: sData['day'].toString(),
+              amount: sData['profit'] as int,
+              percentage:
+                  _sumProfit == 0 ? 0 : (sData['profit'] as int) / _sumProfit,
+            );
+          }).toList(),
+        ),
       ),
     );
   }
