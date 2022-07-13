@@ -74,13 +74,24 @@ class _TransactionScreenState extends State<TransactionScreen> {
     );
   }
 
+  void _delete(String id) {
+    setState(() {
+      return _userTransactions.removeWhere((element) => element.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
           Chart(recentTransaction: _recentTransaction),
-          Expanded(child: TransactionsList(transaction: _userTransactions)),
+          Expanded(
+            child: TransactionsList(
+              transaction: _userTransactions,
+              delete: _delete,
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(

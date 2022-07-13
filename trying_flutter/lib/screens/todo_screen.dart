@@ -78,13 +78,21 @@ class _TodoScreenState extends State<TodoScreen> {
     );
   }
 
+  void _delete(String id) {
+    setState(() {
+      return _todo.removeWhere((element) => element.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
           TodoChart(recentTodo: _recentTodo),
-          Expanded(child: TodoList(todo: _todo)),
+          Expanded(
+            child: TodoList(todo: _todo, delete: _delete),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(

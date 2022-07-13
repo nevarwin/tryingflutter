@@ -36,6 +36,7 @@ class _SampleScreenState extends State<SampleScreen> {
     DateTime date,
   ) {
     final smpls = SampleClass(
+      id: DateTime.now().toString(),
       gName: gCashName,
       gAmount: gCashAmount,
       charge: gCashCharge,
@@ -75,6 +76,12 @@ class _SampleScreenState extends State<SampleScreen> {
     }).toList();
   }
 
+  void _delete(String id) {
+    return setState(() {
+      _samples.removeWhere((element) => element.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +89,11 @@ class _SampleScreenState extends State<SampleScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SamplesChart(recentSamples: _recentSamples),
-          Expanded(child: SampleList(samples: _samples)),
+          Expanded(
+              child: SampleList(
+            samples: _samples,
+            delete: _delete,
+          )),
         ],
       ),
       floatingActionButton: FloatingActionButton(

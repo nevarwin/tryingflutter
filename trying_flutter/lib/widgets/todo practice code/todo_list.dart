@@ -7,8 +7,10 @@ class TodoList extends StatelessWidget {
   const TodoList({
     Key? key,
     required this.todo,
+    required this.delete,
   }) : super(key: key);
   final List<TodoClass> todo;
+  final Function delete;
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +71,15 @@ class TodoList extends StatelessWidget {
                   ),
                   leading: CircleAvatar(
                     backgroundColor: todo[index].color,
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(
+                      Icons.delete,
+                      color: Theme.of(context).errorColor,
+                    ),
+                    onPressed: () {
+                      delete(todo[index].id);
+                    },
                   ),
                 ),
               );

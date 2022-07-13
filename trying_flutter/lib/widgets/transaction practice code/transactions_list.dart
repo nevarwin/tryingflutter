@@ -7,9 +7,11 @@ class TransactionsList extends StatelessWidget {
   const TransactionsList({
     Key? key,
     required this.transaction,
+    required this.delete,
   }) : super(key: key);
 
   final List<Transaction> transaction;
+  final Function delete;
 
   @override
   Widget build(BuildContext context) {
@@ -63,22 +65,33 @@ class TransactionsList extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 8.0),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            transaction[index].title,
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                          Text(
-                            DateFormat('MMMM dd EEEE')
-                                .format(transaction[index].date),
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              transaction[index].title,
+                              style: Theme.of(context).textTheme.titleSmall,
                             ),
-                          )
-                        ],
+                            Text(
+                              DateFormat('MMMM dd EEEE')
+                                  .format(transaction[index].date),
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                        onPressed: () {
+                          delete(transaction[index].id);
+                        },
                       )
                     ],
                   ),

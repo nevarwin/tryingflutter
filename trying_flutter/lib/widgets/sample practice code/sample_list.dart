@@ -7,9 +7,11 @@ class SampleList extends StatelessWidget {
   const SampleList({
     Key? key,
     required this.samples,
+    required this.delete,
   }) : super(key: key);
 
   final List<SampleClass> samples;
+  final Function delete;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,10 @@ class SampleList extends StatelessWidget {
                         child: FittedBox(
                           child: Text(
                             '${samples[index].charge}',
-                            style: Theme.of(context).textTheme.titleMedium,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
@@ -84,6 +89,17 @@ class SampleList extends StatelessWidget {
                         ),
                       )
                     ],
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(
+                      Icons.delete,
+                      color: Theme.of(context).errorColor,
+                    ),
+                    onPressed: () {
+                      delete(
+                        samples[index].id,
+                      );
+                    },
                   ),
                 ),
               );
