@@ -14,9 +14,10 @@ class NewSamples extends StatefulWidget {
 }
 
 class _NewSamplesState extends State<NewSamples> {
-  final gNameController = TextEditingController();
-  final gAmountController = TextEditingController();
   final chargeController = TextEditingController();
+  final gAmountController = TextEditingController();
+  final gNameController = TextEditingController();
+
   DateTime? _choosenDate;
 
   @override
