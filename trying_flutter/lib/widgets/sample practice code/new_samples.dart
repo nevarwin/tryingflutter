@@ -36,6 +36,8 @@ class _NewSamplesState extends State<NewSamples> {
       return;
     }
 
+    _choosenDate ??= DateTime.now();
+
     widget.sampleFunc(
       gName,
       gAmountCtrl,
@@ -68,7 +70,8 @@ class _NewSamplesState extends State<NewSamples> {
   Widget build(BuildContext context) {
     return Padding(
       padding: MediaQuery.of(context).viewInsets,
-      child: Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -99,7 +102,7 @@ class _NewSamplesState extends State<NewSamples> {
                     onPressed: _presentDatePicker,
                     child: Text(
                       _choosenDate == null
-                          ? 'Set Date'
+                          ? 'Date: ${DateFormat.yMEd().format(DateTime.now())}'
                           : 'Date: ${DateFormat.yMEd().format(_choosenDate!)}',
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
